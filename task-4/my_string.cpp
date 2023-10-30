@@ -13,7 +13,7 @@ my_string::my_string(const char *str)
 {
     size = strlen(str);
     data = new char[size + 1];
-    ref_count = new reference_count<my_string>;
+    ref_count = new reference_count<my_string>();
     strcpy(data, str);
 }
 

@@ -2,8 +2,6 @@
 #include <iostream>
 #include <cstring>
 
-using namespace std;
-
 template <class T> class reference_count
 {
 public:

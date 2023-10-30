@@ -4,19 +4,19 @@
 
 my_string::my_string()
 {
-    data = nullptr;
     size = 0;
-    ref_count = new reference_count();
+    data = new char[size + 1];
+    ref_count = new int();
 }
 
 my_string::my_string(const char* str)
 {
-    data = nullptr;
     size = 0;
-    ref_count = new reference_count();
-    size = strlen(str);
     data = new char[size + 1];
+    ref_count = new int();
+    size = strlen(str);
     strcpy(data, str);
+    *ref_count = 1;
 }
 
 my_string::my_string(const my_string& s)
@@ -24,40 +24,40 @@ my_string::my_string(const my_string& s)
     data = s.data;
     size = s.size;
     ref_count = s.ref_count;
-    ref_count -> increment();
+    (*ref_count)++;
 }
 
 my_string& my_string::operator=(const my_string& s)
 {
     if(this != &s)
     {
-        if(ref_count -> get_count() == 0)
+        if(*ref_count== 0)
         {
             delete[] data;
             delete ref_count;
         }
         else
         {
-            ref_count -> decrement();
+            (*ref_count)--;
         }
         data = s.data;
         size = s.size;
         ref_count = s.ref_count;
-        ref_count -> increment();
+        (*ref_count)++;
     }
     return *this;
 }
 
 my_string::~my_string()
 {
-    if(ref_count -> get_count() == 0)
+    if(*ref_count == 0)
         {
             delete[] data;
             delete ref_count;
         }
     else
         {
-            ref_count -> decrement();
+            (*ref_count)--;
         }
 }
 
@@ -80,6 +80,5 @@ void my_string::setChar(const int &i, const char &c)
 
 void my_string::print() const
 {
-    std::cout << data << " [" << ref_count->get_count() << "]" << std::endl;
+    std::cout << data << " [" << *ref_count << "]" << std::endl;
 }
-

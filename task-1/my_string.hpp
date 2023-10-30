@@ -2,8 +2,6 @@
 #include <iostream>
 #include <cstring>
 
-using namespace std;
-
 class my_string
 {
 public:
