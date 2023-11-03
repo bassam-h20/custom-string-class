@@ -28,16 +28,16 @@ my_string::my_string(const my_string& s)
     strcpy(data, s.data); 
 }
 
-//copy assignment constructur for assigining original string to this one
+//copy assignment constructor for assigining original string to another one
 my_string& my_string::operator=(const my_string& s)
 {
-    //check if source and destination string don't match
+    //check if assignment is not self-assignment
     if(this != &s)
     {
         size = s.size;
         strcpy(data, s.data);
     }
-    //return a pointer referring to the altered strinb
+    //return a pointer referring to the altered string
     return *this;
 }
 
@@ -47,6 +47,7 @@ my_string::~my_string() {}
 //get the char at a specific index in the string
 char my_string::getChar(const int& i) const
 {
+    //validate index is within range
     if(i >= 0 && i < size)
     {   
         return data[i];
@@ -58,6 +59,7 @@ char my_string::getChar(const int& i) const
 //set char at a specific index in the string
 void my_string::setChar(const int& i, const char& c)
 {
+    //validate index is within range
     if(i >= 0 && i < size)
     {
         data[i] = c;
