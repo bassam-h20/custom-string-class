@@ -2,6 +2,7 @@
 #include <cstring>
 #include "my_string.hpp"
 
+//constructor for initializing without parameters
 my_string::my_string()
 {
     size = 0;
@@ -9,6 +10,7 @@ my_string::my_string()
     ref_count = new int();
 }
 
+//constructor for initializing from a string
 my_string::my_string(const char* str)
 {
     size = 0;
