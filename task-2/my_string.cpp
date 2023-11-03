@@ -44,7 +44,8 @@ my_string& my_string::operator=(const my_string& s)
     {
         if(*ref_count== 0)
         {
-            delete[] data; //if reference count is 0, release memory
+            delete[] data;
+            //if reference count is 0, release memory
             delete ref_count;
         }
         else
@@ -75,6 +76,7 @@ my_string::~my_string()
         }
 }
 
+//get the char at a specific index in the string
 char my_string::getChar(const int& i) const
 {
     //validate index is within range
@@ -86,10 +88,11 @@ char my_string::getChar(const int& i) const
     return '\0';
 }
 
+//set char at a specific index in the string
 void my_string::setChar(const int &i, const char &c)
 {
     //validate index is within range
-    if (i > 0 && i < size)
+    if (i >= 0 && i < size)
     {
         data[i] = c;
     }
