@@ -14,8 +14,10 @@
 
 ### Task 3
 * This task is solely to demonstrate when the reference count reaches 0. The only thing that was changed from the previous task was adding an if statement for when the reference count reaches to 0, and printing it
+
 ![running task 3 screenshot](./images/WS1-T3.png)
 
 ### Task 4
 * This task was to implement reference counting outside the my_string class and in a seperate header file (ref_count.hpp). That was done using a template class with methods that allow reference counting in the main.cpp file
+
 ![running task 4 screenshot](./images/WS1-T4.png)
