@@ -9,10 +9,10 @@ my_string::my_string()
     //allocate memory for empty string
     data = new char[size + 1];
     //initialize a reference count of for counting copies
-    ref_count = new int();
+    ref_count = new int(1);
 }
 
-//constructor for initializing from a string
+//constructor for initializing a string
 my_string::my_string(const char* str)
 {
     size = strlen(str);

@@ -2,75 +2,80 @@
 #include <cstring>
 #include "my_string.hpp"
 
+//default constructor
 my_string::my_string()
 {
+    data = nullptr;
     size = 0;
-    data = new char[size + 1];
-    ref_count = new reference_count<my_string>;
 }
 
-my_string::my_string(const char *str)
+//constructor for initializing a string
+my_string::my_string(const char* str)
 {
     size = strlen(str);
     data = new char[size + 1];
-    ref_count = new reference_count<my_string>();
     strcpy(data, str);
 }
 
-my_string::my_string(const my_string &s)
+//copy constructor to create a copy of the original string
+my_string::my_string(const my_string& s)
 {
     size = s.size;
-    data = s.data;
-    ref_count = s.ref_count;
-    ref_count->increment();
+    data = new char[size + 1];
+    strcpy(data, s.data);
 }
 
-my_string &my_string::operator=(const my_string &s)
-{
+//copy assignment constructor for assigning original string to another one
+my_string& my_string::operator=(const my_string& s)
+{   
+    //check if assignment is not self-assignment
     if(this != &s)
-    {    if (ref_count->get_count() == 0)
-        {
-            delete ref_count;
-            delete[] data;
-        }
-
-        data = s.data;
+    {
         size = s.size;
-        ref_count = s.ref_count;
-        ref_count->increment();
+        strcpy(data, s.data);
     }
+    //return pointer referring to the altered string
     return *this;
 }
 
-my_string::~my_string()
-{
-    ref_count->decrement();
-    if (ref_count->get_count() == 0)
-    {
-        //print called to demonstrate case of reference ref_count of 0
-        print();
-        delete ref_count;
-        delete[] data;
-    }
+//destructor
+my_string::~my_string() {    
+    delete[] data;
+
 }
 
-char my_string::getChar(const int &i) const
+//
+std::ostream& operator<<(std::ostream& os, const my_string& s)
 {
-    if (i >= 0 && i < size)
+    os << s.data;
+    return os;
+}
+
+//get the char at a specific index in the string
+char my_string::getChar(const int& i) const
+{   
+    //validate index is within range
+    if(i >= 0 && i < size)
     {
         return data[i];
     }
+    //return null terminator if index is out of range
     return '\0';
 }
 
-void my_string::setChar(const int &i, const char &c)
+//set char at a specific index in the string
+void my_string::setChar(const int& i, const char& c)
 {
-    if (i > 0 && i < size)
+    //validate index is within range
+    if(i >= 0 && i < size)
     {
         data[i] = c;
     }
 }
+
+//print function to output string
 void my_string::print() const
 {
-    std::cout << data << " [" << ref_count->get_count() << "]" << std::endl;
+    std::cout << data << std::endl;
 }
+

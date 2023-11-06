@@ -1,26 +1,17 @@
 #pragma once
 #include <iostream>
-#include <cstring>
-
-template <class T> class reference_count
-{
-public:
-    reference_count() : count(1){}
-    void increment() {count++;}
-    void decrement() {--count;}
-    int get_count() const {return count;}
-private:
-    int count;
-};
 
 class my_string
 {
 public:
     my_string();
     my_string(const char *);
+
     my_string(my_string const& s);
     my_string& operator= (my_string const& s);
     ~my_string();
+
+    friend std::ostream& operator<<(std::ostream& os, const my_string& s);
 
     char getChar(const int& i) const;
     void setChar(const int& i, const char& c);
@@ -29,5 +20,5 @@ public:
 private:
     char* data;
     size_t size;
-    reference_count<my_string> *ref_count;
+
 };

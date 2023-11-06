@@ -2,17 +2,17 @@
 #include <cstring>
 #include "my_string.hpp"
 
-//constructor for initializing without parameters
+//default constructor
 my_string::my_string()
 {
     size = 0;
     //allocate memory for empty string
     data = new char[size + 1];
     //initialize a reference count of for counting copies
-    ref_count = new int();
+    ref_count = new int(1);
 }
 
-//constructor for initializing from a string
+//constructor for initializing a string
 my_string::my_string(const char *str)
 {
     size = strlen(str);
@@ -31,7 +31,6 @@ my_string::my_string(const my_string &s)
     //copu data pointer, size, and reference count
     size = s.size;
     data = s.data;
-    ref_count = s.ref_count;
     //increment reference count to indicate another occurence
     (*ref_count)++;
 }
