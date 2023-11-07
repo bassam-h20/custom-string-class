@@ -5,13 +5,9 @@
 template <class X> class reference_count
 {
 public:
-    //default constructor
-    reference_count()
-    {
-        data = nullptr;
-        //initializing reference count as 1
-        ref_count = new int(1);
-    }
+    //default constructor that cannot be referenced
+    reference_count() = delete;
+
     //constructor for passing in pointer for memory allocation
     reference_count(X* ptr)
     {
@@ -55,11 +51,6 @@ public:
         return data;
     }
 
-    //allows to dereference an object
-    X* operator*() 
-    {
-        return data;
-    }
 
     //destructor
     ~reference_count()
