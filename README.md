@@ -24,18 +24,49 @@ output:
 * This task was about extending the string class to automate the process of reference counting, by print the test strings, with the reference count printed right after in the format "string [reference count]"
 
 * This was done by initializing a reference count variable in the header file(my_string.hpp) and incrementing or decrementing it depending on the action needed in each method in the my_string class
+```int *ref_count;```
+
+* This one of the methods in the my_string class that allows reference counting, this is the copy constructor:
+```
+//copy constructor to create a copy of the original string
+my_string::my_string(const my_string& s)
+{
+    //copy data pointer, size and reference count
+    data = s.data;
+    size = s.size;
+    ref_count = s.ref_count;
+    //increment reference count to indicate another occurence of a copy
+    (*ref_count)++;
+}
+
+```
 
 To compile & run:
 ```
-clang++ test_string.cpp my_string.cpp -o test_string; ./test_string
+clang++ test_string.cpp my_string.cpp -o test_string; ./test_string 
 ```
+
 output:
 
 ![running task 2 screenshot](./images/WS1-T2.png)
 
 ---
 ### <u>**Task 3**</u>
-* This task is solely to demonstrate when the reference count reaches 0. The only thing that was changed from the previous task was adding an if statement for when the reference count reaches to 0, and printing it
+* This task is solely to demonstrate when the reference count reaches 0. The only thing that was changed from the previous task was adding an if statement for when the reference count reaches to 0, and printing it, shown here in the destructor:
+```
+my_string::~my_string()
+{
+    *ref_count -= 1;
+    if (*ref_count == 0)
+    {
+        //print called to demonstrate case of reference count of 0
+        print();
+        delete ref_count;
+        delete[] data;
+    }
+}
+```
+
 
 to compile & run:
 ```
