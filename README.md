@@ -128,6 +128,8 @@ to compile & run:
 clang++ main.cpp my_string.cpp -o main
 ```
 
+output:
+
 ![running task 4 screenshot](./images/WS1-T4.png)
 
 
