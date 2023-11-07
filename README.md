@@ -50,13 +50,16 @@ output:
 ### <u>**Task 4**</u>
 * This task was to implement reference counting outside the my_string class and in a seperate header file (ref_count.hpp). That was done using a template class with methods that allow reference counting in the main.cpp file
 
-* For this task, a template class was implemented to help manage reference counting for some data. It holds a pointer to the object of type X, and keeps take of the number of references to that object. 
+* For this task, a template class was implemented to help manage reference counting for some data. It holds a pointer to the object of type X, and keeps count of the number of references to that object. This reference counting class is made to work with any class.
+
+* To test the implementation, two tests were put in place. One for the my_string class, and one for int, as shown here:
+![test file code](./images/WS1-T4(2).png)
 
 to compile & run:
 ```
 clang++ main.cpp my_string.cpp -o main
 ```
 
-![running task 4 screenshot](./images/WS1-T4(2).png)
+![running task 4 screenshot](./images/WS1-T4.png)
 
 
