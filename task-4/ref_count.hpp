@@ -9,6 +9,7 @@ public:
     reference_count()
     {
         data = nullptr;
+        //initializing reference count as 1
         ref_count = new int(1);
     }
     //constructor for passing in pointer for memory allocation
