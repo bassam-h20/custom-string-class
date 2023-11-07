@@ -53,6 +53,7 @@ output:
 * For this task, a template class was implemented to help manage reference counting for some data. It holds a pointer to the object of type X, and keeps count of the number of references to that object. This reference counting class is made to work with any class.
 
 * To test the implementation, two tests were put in place. One for the my_string class, and one for int, as shown here:
+
 ![test file code](./images/WS1-T4(2).png)
 
 to compile & run:
