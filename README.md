@@ -1,3 +1,11 @@
+[Task 1](### Task 1)
+
+[Task 2](### Task 2)
+
+[Task 3](###Task 3)
+
+[Task 4](###Task 4)
+
 # ASP Worksheet 1
 
 ## Simplified string class and reference counting
@@ -10,7 +18,7 @@
 * Other methods include "getChar()" which returns the character at a specific index in the string and "setChar()" sets the character at specific index in the string
 
 To compile & run:
-```
+```bash
 clang++ test_string.cpp my_string.cpp -o test_string; ./test_string
 ```
 
@@ -27,7 +35,7 @@ output:
 ```int *ref_count;```
 
 * This one of the methods in the my_string class that allows reference counting, this is the copy constructor:
-```
+```cpp
 //copy constructor to create a copy of the original string
 my_string::my_string(const my_string& s)
 {
@@ -53,7 +61,7 @@ output:
 ---
 ### <u>**Task 3**</u>
 * This task is solely to demonstrate when the reference count reaches 0. The only thing that was changed from the previous task was adding an if statement for when the reference count reaches to 0, and printing it, shown here in the destructor:
-```
+```cpp
 my_string::~my_string()
 {
     *ref_count -= 1;
@@ -84,7 +92,7 @@ output:
 * For this task, a template class was implemented to help manage reference counting for some data. It holds a pointer to the object of type X, and keeps count of the number of references to that object. This reference counting class is made to work with any class.
 
 * To test the implementation, three tests in total were put in place. two for the my_string class (one of them using the assignment operator), and one for int class, as shown here:
-```
+```cpp
 reference_count<my_string> s(new my_string("Hello"));
     s.print();
     {
@@ -98,7 +106,7 @@ reference_count<my_string> s(new my_string("Hello"));
     s->setChar(1, 'a');
     s.print();
 ```
-```
+```cpp
 reference_count<my_string> s3(new my_string("Hello"));
     s3.print();
     {
@@ -112,7 +120,7 @@ reference_count<my_string> s3(new my_string("Hello"));
     s3->setChar(1, 'E');
     s3.print();
 ```
-```
+```cpp
 reference_count<int> i(new int(5));
     i.print();
     {
