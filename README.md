@@ -1,3 +1,7 @@
+# ASP Worksheet 1
+
+### Table of contents
+---
 [Task 1](#task-1)
 
 [Task 2](#task-2)
@@ -6,7 +10,7 @@
 
 [Task 4](#task-4)
 
-# ASP Worksheet 1
+---
 
 ## Simplified string class and reference counting
 
