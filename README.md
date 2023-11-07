@@ -52,9 +52,45 @@ output:
 
 * For this task, a template class was implemented to help manage reference counting for some data. It holds a pointer to the object of type X, and keeps count of the number of references to that object. This reference counting class is made to work with any class.
 
-* To test the implementation, two tests were put in place. One for the my_string class, and one for int, as shown here:
-
-![test file code](./images/WS1-T4(2).png)
+* To test the implementation, three tests in total were put in place. two for the my_string class (one of them using the assignment operator), and one for int class, as shown here:
+```
+reference_count<my_string> s(new my_string("Hello"));
+    s.print();
+    {
+        reference_count<my_string> s2(s);
+        s.print();
+        s2.print();
+        std::cout << "s2: " << s2->getChar(1) << std::endl;
+        s.print();
+        s2.print();
+    }
+    s->setChar(1, 'a');
+    s.print();
+```
+```
+reference_count<my_string> s3(new my_string("Hello"));
+    s3.print();
+    {
+        reference_count<my_string> s4 = s3;
+        s3.print();
+        s4.print();
+        std::cout << "s4: " << s4->getChar(1) << std::endl;
+        s3.print();
+        s4.print();
+    }
+    s3->setChar(1, 'E');
+    s3.print();
+```
+```
+reference_count<int> i(new int(5));
+    i.print();
+    {
+        reference_count<int> i2(i);
+        i.print();
+        i2.print();
+    }
+    i.print();
+```
 
 to compile & run:
 ```
