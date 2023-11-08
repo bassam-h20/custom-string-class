@@ -150,7 +150,7 @@ reference_count<int> x(new int(3));
 
 to compile & run:
 ```cpp
-clang++ main.cpp my_string.cpp -o main
+clang++ main.cpp my_string.cpp -o main; ./main
 ```
 
 output:
