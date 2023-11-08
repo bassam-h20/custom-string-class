@@ -36,9 +36,12 @@ output:
 * This task was about extending the string class to automate the process of reference counting, by print the test strings, with the reference count printed right after in the format "string [reference count]"
 
 * This was done by initializing a reference count variable in the header file(my_string.hpp) and incrementing or decrementing it depending on the action needed in each method in the my_string class
-```int *ref_count;```
+```cpp
+private:
+    int *ref_count;
+```
 
-* This one of the methods in the my_string class that allows reference counting, this is the copy constructor:
+* This one of the methods in the my_string class that allows reference counting in the copy constructor:
 ```cpp
 //copy constructor to create a copy of the original string
 my_string::my_string(const my_string& s)
@@ -54,7 +57,7 @@ my_string::my_string(const my_string& s)
 ```
 
 To compile & run:
-```
+```cpp
 clang++ test_string.cpp my_string.cpp -o test_string; ./test_string 
 ```
 
@@ -81,7 +84,7 @@ my_string::~my_string()
 
 
 to compile & run:
-```
+```cpp
 clang++ test_string.cpp my_string.cpp -o test_string; ./test_string
 ```
 
@@ -95,7 +98,7 @@ output:
 
 * For this task, a template class was implemented to help manage reference counting for some data. It holds a pointer to the object of type X, and keeps count of the number of references to that object. This reference counting class is made to work with any class.
 
-* To test the implementation, three tests in total were put in place. two for the my_string class (one of them using the assignment operator), and one for int class, as shown here:
+* To test the implementation, four tests in total were put in place. two for the my_string class (one of them using the assignment operator), and two for int class (one of them using the assignment operator), as shown here:
 ```cpp
 reference_count<my_string> s(new my_string("Hello"));
     s.print();
@@ -134,9 +137,19 @@ reference_count<int> i(new int(5));
     }
     i.print();
 ```
+```cpp
+reference_count<int> x(new int(3));
+    x.print();
+    {
+        reference_count<int> y = x;
+        x.print();
+        y.print();
+    }
+    x.print();   
+```
 
 to compile & run:
-```
+```cpp
 clang++ main.cpp my_string.cpp -o main
 ```
 
